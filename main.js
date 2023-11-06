@@ -1,6 +1,8 @@
 (() =>
     {
         const imageFilePath = "images/";
+        const numImages = 102;
+        const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
 
         let youtubeLeftControls, youtubePlayer;
@@ -38,16 +40,19 @@
         function getRandomImage()
         {
             //NOTE: percent is even across the board for any given image to be chosen
-            //TODO: Implement
+
+            let random = 0;
+            random = getRandomInt(numImages + 1); //NOTE: +1 is because max is not inclusive
+            return random;
         }
 
         //NOTE: The purpose of this function is to randomly determine whether or not to flip the image or not
         function getImageState()
         {
-            //NOTE: percent to flip is 50%
+            //NOTE: percent to flip is default 50% when flipRandomPercent = 2
 
             let random = 0;
-            random = getRandomInt(2); //returns either 0 or 1 randomly
+            random = getRandomInt(flipRandomPercent); //returns a random number from 0 to flipRandomPercent
 
             if(random === 1)
             {
