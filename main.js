@@ -28,6 +28,12 @@
             //TODO: Implement
         }
 
+        //NOTE: The purpose of this function is to take in a max number, and return a random number from 0 to that max number
+        function getRandomInt(max)
+        {
+            return Math.floor(Math.random() * max);
+        }
+
         //NOTE: The purpose of this function is to get a random image to display
         function getRandomImage()
         {
@@ -39,7 +45,18 @@
         function getImageState()
         {
             //NOTE: percent to flip is 50%
-            //TODO: Implement
+
+            let random = 0;
+            random = getRandomInt(2); //returns either 0 or 1 randomly
+
+            if(random === 1)
+            {
+                return true; //STATE: flip image
+            }
+            else
+            {
+                return false; //STATE: do not flip image
+            }
 
         }
 
