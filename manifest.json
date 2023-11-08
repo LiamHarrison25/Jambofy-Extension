@@ -12,13 +12,13 @@
       "run_at": "document_idle"
     }
   ],
+  "permissions": ["nativeMessaging"],
   "web_accessible_resources":
   [
     {
       "resources":
       [
-        "assets/images/*.png",
-        "assets/images/*.json"
+        "assets/images/*.png"
       ],
       "matches": ["*://*/*"]
     }],
@@ -31,6 +31,7 @@
       "32": "assets/icons/icon-32.png",
       "128": "assets/icons/icon-128.png"
     },
+    "default_popup": "popup.html",
     "default_title": "Jambofyer"
   },
   "icons":

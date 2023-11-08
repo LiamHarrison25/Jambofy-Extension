@@ -1,7 +1,7 @@
 (() =>
     {
-        const imageFilePath = "images/";
-        const numImages = 102;
+        const imageFilePath = "assets/images/";
+        const numImages = 103;
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
 
@@ -33,17 +33,7 @@
                     {
                         const index = getRandomImage();
                         let flip = getImageState();
-                        let url
-                        if (flip)
-                        {
-                            //TODO: Implement flip
-                            //flips the image
-                            url = getImageURL(index);
-                        }
-                        else
-                        {
-                            url = getImageURL(index);
-                        }
+                        let url = getImageURL(index);
                         applyThumbnails(image, url, flip);
                     }
                 }
@@ -71,7 +61,7 @@
                 overlay.style.zIndex = "0";
                 if(flip)
                 {
-                    //TODO: Implement
+                    overlay.style.transform = "scaleX(-1)";
                 }
                 image.style.position = "relative";
                 image.parentElement.appendChild(overlay);
