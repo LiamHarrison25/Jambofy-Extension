@@ -4,20 +4,6 @@
         const numImages = 103;
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
-
-        // let youtubeLeftControls, youtubePlayer;
-        // let currentVideo = ""; //stores the current video
-        // chrome.runtime.onmessage.addListener((obj, sender, response) =>
-        // {
-        //     const { type, value, videoId } = obj;
-        //
-        //     if (type == "NEW")
-        //     {
-        //         currentVideo = videoId;
-        //         newVideoLoaded();
-        //     }
-        // })
-
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
@@ -47,12 +33,12 @@
         }
 
         //NOTE: The purpose of this function is to apply the thumbnail images to the thumbnails on YouTube.com
-        function applyThumbnails(image, url, flip = false)
+        function applyThumbnails(image, imageUrl, flip = false)
         {
-            //TODO: Implement
-            if (image.nodeName === "IMG")
+            if (image.nodeName == "IMG")
             {
                 const overlay = document.createElement("img");
+                overlay.src = imageUrl;
                 overlay.style.position = "absolute";
                 overlay.style.top = "0";
                 overlay.style.left = "0";
@@ -61,14 +47,14 @@
                 overlay.style.zIndex = "0";
                 if(flip)
                 {
-                    overlay.style.transform = "scaleX(-1)";
+                    overlay.style.transform = "scaleX(-1)"; //flips the image
                 }
                 image.style.position = "relative";
                 image.parentElement.appendChild(overlay);
             }
-            else if (image.nodeName === "DIV")
+            else if (image.nodeName == "DIV")
             {
-                image.style.backgroundImage = `url("${url}"), ` + image.style.backgroundImage;
+                image.style.backgroundImage = `url("${imageUrl}"), ` + image.style.backgroundImage;
             }
         }
 
@@ -121,40 +107,8 @@
             })
         }
 
-        var indexMax;
-
-        async function getMaxIndex()
-        {
-            let i = 4;
-
-            while (await doesImageExist(i))
-            {
-                i *= 2;
-            }
-
-            let min = i <= 4 ? 1 : i / 2;
-            let max = i;
-
-            while (min <= max)
-            {
-                let mid = Math.floor((min + max) / 2);
-
-                if(await doesImageExist(mid))
-                {
-                    min = mid + 1;
-                }
-                else
-                {
-                    max = mid - 1;
-                }
-            }
-            indexMax = max;
-        }
-
-        getMaxIndex().then(() =>
-        {
-            setInterval(getThumbnails, 100);
-        })
+        //runs the functions
+        setInterval(getThumbnails, 100);
 
     }
 )();
