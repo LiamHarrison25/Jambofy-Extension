@@ -3,10 +3,6 @@
   "name": "Jambofy",
   "version": "0.1.0",
   "description": "Improves boring youtube thumbnails and Jambofys them",
-  "permissions":
-  [
-    "https://www.youtube.com/*"
-  ],
   "host_permissions": [ "https://www.youtube.com/*"],
   "content_scripts":
   [
@@ -35,8 +31,7 @@
       "32": "assets/icons/icon-32.png",
       "128": "assets/icons/icon-128.png"
     },
-    "default_title": "Jambofyer",
-    "default_popup": "popup.html"
+    "default_title": "Jambofyer"
   },
   "icons":
   {
