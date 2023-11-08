@@ -1,11 +1,13 @@
 {
+  "manifest_version": 3,
   "name": "Jambofy",
   "version": "0.1.0",
   "description": "Improves boring youtube thumbnails and Jambofys them",
   "permissions":
   [
-    "https://www.youtube.com/*", "tabs"
+    "https://www.youtube.com/*"
   ],
+  "host_permissions": [ "https://www.youtube.com/*"],
   "content_scripts":
   [
     {
@@ -16,20 +18,31 @@
   ],
   "web_accessible_resources":
   [
-    "assets/images/*.png",
-    "assets/images/*.json"
-  ],
+    {
+      "resources":
+      [
+        "assets/images/*.png",
+        "assets/images/*.json"
+      ],
+      "matches": ["*://*/*"]
+    }],
   "action":
   {
     "default_icon":
     {
-      "16": "assets/icons/icon.png",
-      "24": "assets/icons/icon.png",
-      "32": "assets/icons/icon.png",
-      "128": "assets/icons/icon.png"
+      "16": "assets/icons/icon-16.png",
+      "24": "assets/icons/icon-24.png",
+      "32": "assets/icons/icon-32.png",
+      "128": "assets/icons/icon-128.png"
     },
     "default_title": "Jambofyer",
     "default_popup": "popup.html"
   },
-  "manifest_version": 3
+  "icons":
+  {
+    "16": "assets/icons/icon-16.png",
+    "24": "assets/icons/icon-24.png",
+    "32": "assets/icons/icon-32.png",
+    "128": "assets/icons/icon-128.png"
+  }
 }

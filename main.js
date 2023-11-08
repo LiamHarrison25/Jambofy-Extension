@@ -5,25 +5,25 @@
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
 
-        let youtubeLeftControls, youtubePlayer;
-        let currentVideo = ""; //stores the current video
-        chrome.runtime.onmessage.addListener((obj, sender, response) =>
-        {
-            const { type, value, videoId } = obj;
-
-            if (type == "NEW")
-            {
-                currentVideo = videoId;
-                newVideoLoaded();
-            }
-        })
+        // let youtubeLeftControls, youtubePlayer;
+        // let currentVideo = ""; //stores the current video
+        // chrome.runtime.onmessage.addListener((obj, sender, response) =>
+        // {
+        //     const { type, value, videoId } = obj;
+        //
+        //     if (type == "NEW")
+        //     {
+        //         currentVideo = videoId;
+        //         newVideoLoaded();
+        //     }
+        // })
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
             const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
 
-            const thumbnail = document.querySelectorAll(element);
+            const thumbnail = document.querySelectorAll(thumbnailQuery);
 
             thumbnail.forEach((image) =>
                 {
@@ -116,6 +116,55 @@
             }
 
         }
+
+        //NOTE: The purpose of this function is to check if an image exists
+        async function doesImageExist(index)
+        {
+            const url = getImageURL(index);
+
+            return fetch(url).then(() =>
+            {
+                return true
+            }).catch(error =>
+            {
+                return false
+            })
+        }
+
+        var indexMax;
+
+        async function getMaxIndex()
+        {
+            let i = 4;
+
+            while (await doesImageExist(i))
+            {
+                i *= 2;
+            }
+
+            let min = i <= 4 ? 1 : i / 2;
+            let max = i;
+
+            while (min <= max)
+            {
+                let mid = Math.floor((min + max) / 2);
+
+                if(await doesImageExist(mid))
+                {
+                    min = mid + 1;
+                }
+                else
+                {
+                    max = mid - 1;
+                }
+            }
+            indexMax = max;
+        }
+
+        getMaxIndex().then(() =>
+        {
+            setInterval(getThumbnails, 100);
+        })
 
     }
 )();
