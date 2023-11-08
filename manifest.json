@@ -16,16 +16,17 @@
   ],
   "web_accessible_resources":
   [
-    "images/*.png",
-    "images/*.json"
+    "assets/images/*.png",
+    "assets/images/*.json"
   ],
   "action":
   {
     "default_icon":
     {
-      "16": "assets/icon.png",
-      "24": "assets/icon.png",
-      "32": "assets/icon.png"
+      "16": "assets/icons/icon.png",
+      "24": "assets/icons/icon.png",
+      "32": "assets/icons/icon.png",
+      "128": "assets/icons/icon.png"
     },
     "default_title": "Jambofyer",
     "default_popup": "popup.html"

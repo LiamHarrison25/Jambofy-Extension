@@ -21,13 +21,65 @@
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            //TODO: Implement
+            const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
+
+            const thumbnail = document.querySelectorAll(element);
+
+            thumbnail.forEach((image) =>
+                {
+                    let counter = Math.random() > 0.001 ? 1 : 20;
+                    let i = 0;
+                    for(i = 0; i < counter; i++)
+                    {
+                        const index = getRandomImage();
+                        let flip = getImageState();
+                        let url
+                        if (flip)
+                        {
+                            //TODO: Implement flip
+                            //flips the image
+                            url = getImageURL(index);
+                        }
+                        else
+                        {
+                            url = getImageURL(index);
+                        }
+                        applyThumbnails(image, url, flip);
+                    }
+                }
+            )
+        }
+
+        //NOTE: The purpose of this function is to return the url of an image
+        function getImageURL(index)
+        {
+            return chrome.runtime.getURL(`${imageFilePath}${index}.png`);
         }
 
         //NOTE: The purpose of this function is to apply the thumbnail images to the thumbnails on YouTube.com
-        function applyThumbnails()
+        function applyThumbnails(image, url, flip = false)
         {
             //TODO: Implement
+            if (image.nodeName === "IMG")
+            {
+                const overlay = document.createElement("img");
+                overlay.style.position = "absolute";
+                overlay.style.top = "0";
+                overlay.style.left = "0";
+                overlay.style.width = "100%";
+                overlay.style.height = "100%";
+                overlay.style.zIndex = "0";
+                if(flip)
+                {
+                    //TODO: Implement
+                }
+                image.style.position = "relative";
+                image.parentElement.appendChild(overlay);
+            }
+            else if (image.nodeName === "DIV")
+            {
+                image.style.backgroundImage = `url("${url}"), ` + image.style.backgroundImage;
+            }
         }
 
         //NOTE: The purpose of this function is to take in a max number, and return a random number from 0 to that max number
