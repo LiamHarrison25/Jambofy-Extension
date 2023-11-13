@@ -3,6 +3,7 @@
         const imageFilePath = "assets/images/";
         const numImages = 103;
         const flipRandomPercent = 3; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
+        var isEnabled = true;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
@@ -108,6 +109,9 @@
         }
 
         //runs the functions
-        setInterval(getThumbnails, 100);
+        if(isEnabled) //checks if the user has disabled the plugin or not
+        {
+            setInterval(getThumbnails, 100);
+        }
     }
 )();
