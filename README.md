@@ -22,3 +22,9 @@ Photoshopping and videos by Peam
 ##
 
 This extension was originally made as a submission for Jshlatt's Shark Tank Pitch Stream in late 2023. 
+<br />
+Link to video:
+https://youtu.be/H5iqrUr4uYk?si=b0lR5J_ZlHQQlp2p 
+<br />
+Link to extension store page:
+https://chromewebstore.google.com/detail/jambofy/ecbedadooalalcgolmfgpnmphhccegei 
