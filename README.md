@@ -28,3 +28,7 @@ https://youtu.be/H5iqrUr4uYk?si=b0lR5J_ZlHQQlp2p
 <br />
 Link to extension store page:
 https://chromewebstore.google.com/detail/jambofy/ecbedadooalalcgolmfgpnmphhccegei 
+<br />
+The idea for this extension was inspired by the MrBeastify extension:
+<br />
+https://chromewebstore.google.com/detail/youtube-mrbeastify/dbmaeobgdodeimjdjnkipbfhgeldnmeb
