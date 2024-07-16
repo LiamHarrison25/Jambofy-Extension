@@ -1,7 +1,8 @@
 (() =>
     {
         const imageFilePath = "assets/images/";
-        const numImages = 127;
+        const numImages = 160;
+        const flipExcludedCutoff = 156; //TODO: Temporary number. Fix with the correct number.
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
         var isEnabled = true;
 
@@ -19,7 +20,13 @@
                     for(i = 0; i < counter; i++)
                     {
                         const index = getRandomImage();
-                        let flip = getImageState();
+
+                        let flip = false;
+                        if(index < flipExcludedCutoff)
+                        {
+                            flip = getImageState();
+                        }
+
                         let url = getImageURL(index);
                         applyThumbnails(image, url, flip);
                     }
