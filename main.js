@@ -1,8 +1,8 @@
 (() =>
     {
         const imageFilePath = "assets/images/";
-        const numImages = 160;
-        const flipExcludedCutoff = 156; //TODO: Temporary number. Fix with the correct number.
+        const numImages = 166;
+        const flipExcludedCutoff = 164; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
         var isEnabled = true;
 
@@ -21,11 +21,7 @@
                     {
                         const index = getRandomImage();
 
-                        let flip = false;
-                        if(index < flipExcludedCutoff)
-                        {
-                            flip = getImageState();
-                        }
+                        let flip = getImageState(index);
 
                         let url = getImageURL(index);
                         applyThumbnails(image, url, flip);
@@ -83,9 +79,16 @@
         }
 
         //NOTE: The purpose of this function is to randomly determine whether or not to flip the image or not
-        function getImageState()
+        function getImageState(num)
         {
             //NOTE: percent to flip is default 50% when flipRandomPercent = 2
+
+            //Prevents flipping non-flippable images
+            if(num >= flipExcludedCutoff)
+            {
+                return false;
+            }
+
 
             let random = 0;
             random = getRandomInt(flipRandomPercent); //returns a random number from 0 to flipRandomPercent
