@@ -49,6 +49,8 @@
                 overlay.style.width = "100%";
                 overlay.style.height = "100%";
                 overlay.style.zIndex = "0";
+                overlay.style.opacity = "1.0";
+
                 if(flip)
                 {
                     overlay.style.transform = "scaleX(-1)"; //flips the image
