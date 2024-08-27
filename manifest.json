@@ -39,5 +39,14 @@
     "24": "assets/icons/icon-24.png",
     "32": "assets/icons/icon-32.png",
     "128": "assets/icons/icon-128.png"
-  }
+  },
+  "background":
+  {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions":
+  [
+    "storage"
+  ]
 }

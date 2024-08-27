@@ -7,15 +7,12 @@
         <link rel="stylesheet" href="bulma.min.css" />
     </head>
 
-
-
-
-
     <body style="background-color:lightblue">
 
         <div class="container m-2">
             <h1 style="color:darkorange; font-family: 'Niagara Engraved', sans-serif, inherit; "> Jambofy Extension &#128008 </h1>
 
+            <!-- Buttons for toggling the cats-->
             <div class="field">
                 <label class="label"> Toggle Cats &#8970 &#128572 &#8971</label>
                 <span class="tag is-outlined is-medium is-primary" id="enable"> Enabled</span>
@@ -24,72 +21,29 @@
             </div>
         </div>
 
+        <!-- Dropdown for the cat opacity-->
         <div class="container m-2">
             <div class="field">
-                <label class="label"> Change cat Transparency </label>
-
+                <label class="label"> Change cat opacity </label>
+                <div class="select">
+                    <select id="opacity" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(0, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(0, 0%, 96%)" >
+                        <option value="100" style="background-color: darkslateblue; " > 100%</option>
+                        <option value="75" style="background-color: slateblue"> 75%</option>
+                        <option value="50" style="background-color: mediumslateblue"> 50%</option>
+                        <option value="25" style="background-color: cornflowerblue"> 25%</option>
+                    </select>
+                </div>
             </div>
 
         </div>
 
 
-        <h3 style="color:darkslategray; font-family: sans-serif, inherit; "> &#8970 &#128572 &#8971</h3> <!-- NOTE: for disabled feedback: &#	128575 -->
-        <button id="ToggleButton" style=" background-color: lavender; border-color: darkorange; scale: inherit; align-content: center">Toggle Cats</button>
+<!--        <h3 style="color:darkslategray; font-family: sans-serif, inherit; "> &#8970 &#128572 &#8971</h3> &lt;!&ndash; NOTE: for disabled feedback: &#	128575 &ndash;&gt;-->
+<!--        <button id="ToggleButton" style=" background-color: lavender; border-color: darkorange; scale: inherit; align-content: center">Toggle Cats</button>-->
 
-        <h3 style="color:darkslategray">Cat Opacity</h3>
-
-        <!-- TODO: Insert slider for image opacity -->
+<!--        <h3 style="color:darkslategray">Cat Opacity</h3>-->
 
     </body>
-
-    <!--    <style type="text/css">-->
-    <!--        body-->
-    <!--        {-->
-    <!--            margin: 5px;-->
-    <!--        }-->
-    <!--        h1-->
-    <!--        {-->
-    <!--            font-size: 15px;-->
-    <!--            text-align: center;-->
-    <!--        }-->
-
-    <!--        .slidecontainer {-->
-    <!--            width: 100%;-->
-    <!--        }-->
-
-    <!--        .slider {-->
-    <!--            -webkit-appearance: none;-->
-    <!--            width: 100%;-->
-    <!--            height: 25px;-->
-    <!--            background: #d3d3d3;-->
-    <!--            outline: none;-->
-    <!--            opacity: 0.7;-->
-    <!--            -webkit-transition: .2s;-->
-    <!--            transition: opacity .2s;-->
-    <!--        }-->
-
-    <!--        .slider:hover {-->
-    <!--            opacity: 1;-->
-    <!--        }-->
-
-    <!--        .slider::-webkit-slider-thumb {-->
-    <!--            -webkit-appearance: none;-->
-    <!--            appearance: none;-->
-    <!--            width: 25px;-->
-    <!--            height: 25px;-->
-    <!--            background: #4CAF50;-->
-    <!--            cursor: pointer;-->
-    <!--        }-->
-
-    <!--        .slider::-moz-range-thumb {-->
-    <!--            width: 25px;-->
-    <!--            height: 25px;-->
-    <!--            background: #4CAF50;-->
-    <!--            cursor: pointer;-->
-    <!--        }-->
-
-    <!--    </style>-->
-
 
     <script src="popup.js"></script>
 </html>

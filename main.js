@@ -5,6 +5,19 @@
         const flipExcludedCutoff = 168; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
         var isEnabled = true;
+        var opacityPercentage = 100;
+
+
+        chrome.storage.local.get(["opacity"], (result) =>
+        {
+            console.log("Opacity received on main")
+            const { opacity } = result;
+
+            if(opacity)
+            {
+                opacityPercentage = opacity;
+            }
+        })
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
@@ -40,7 +53,7 @@
         function applyThumbnails(image, imageUrl, flip = false)
         {
             if (image.nodeName == "IMG")
-            {
+            {``
                 const overlay = document.createElement("img");
                 overlay.src = imageUrl;
                 overlay.style.position = "absolute";
@@ -49,7 +62,7 @@
                 overlay.style.width = "100%";
                 overlay.style.height = "100%";
                 overlay.style.zIndex = "0";
-                overlay.style.opacity = "1.0";
+                overlay.style.opacity = opacityPercentage / 100.0;
 
                 if(flip)
                 {
