@@ -1,6 +1,7 @@
 # Jambofy Chrome Extension
 
-
+![Google Chrome](https://img.shields.io/badge/Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)
+![Opera](https://img.shields.io/badge/Opera-FF1B2D?style=for-the-badge&logo=Opera&logoColor=white)
 
 <p align="center">
   <img src="https://lh3.googleusercontent.com/Nw4bhfjeIqi9gXZXH1Jv9Qr7_oQb5ziM1r_yPh-PTZawSAan3M77cxazYB0CmR-nhlZIrAfrXB7JqXvcWJ4JkZK4=w640-h400-e365-rj-sc0x00ffffff" alt="Jambofy Image" width = "800" height="500" style="align-items=center; justify-content=center;" />
