@@ -1,25 +1,24 @@
 
 //Elements:
-const enableButton = document.getElementById("enable");
-const disableButton = document.getElementById("disable");
+// const enableButton = document.getElementById("enable");
+// const disableButton = document.getElementById("disable");
 const opacityDropdown = document.getElementById("opacity");
+const toggleDropdown = document.getElementById("toggle");
 
-enableButton.onclick = Enable;
-disableButton.onclick = Disable;
+//enableButton.onclick = Enable;
+//disableButton.onclick = Disable;
 opacityDropdown.onclick = SwitchCatOpacity;
+toggleDropdown.onclick = ToggleCats;
 
-function Enable()
+function ToggleCats()
 {
-
-    chrome.runtime.sendMessage({event: 'onEnable'})
-    console.log("Sending enable event");
-    //TODO: Connect to main.js to toggle the cats
-}
-
-function Disable()
-{
-    chrome.runtime.sendMessage({event: 'onDisable'})
-    console.log("Sending disable event");
+    const prefs =
+        {
+            toggled : toggleDropdown.value
+        }
+    console.log(toggleDropdown.value);
+    chrome.runtime.sendMessage({event: 'onToggle', prefs})
+    console.log("Sending toggle event");
 }
 
 function SwitchCatOpacity()
@@ -31,9 +30,9 @@ function SwitchCatOpacity()
     console.log(opacityDropdown.value);
     chrome.runtime.sendMessage({event: 'onSwitchOpacity', prefs})
     console.log("Sending switchOpacity event");
-    //TODO: Connect to main.js to switch the opacity
 }
 
+//NOTE: Ensures that the opacity preferences will be saved
 chrome.storage.local.get(["opacity"], (result) =>
 {
     const { opacity } = result;
@@ -44,22 +43,13 @@ chrome.storage.local.get(["opacity"], (result) =>
     }
 })
 
-//document.getElementById("ToggleButton").addEventListener('click', ToggleImages);
+//NOTE: Ensures that the toggle preferences will be saved
+chrome.storage.local.get(["toggled"], (result ) =>
+{
+    const { toggled } = result;
 
-
-//Outdated:
-// document.addEventListener('DOMContentLoaded', function()
-// {
-//     var checkPageButton = document.getElementById('DisableButton');
-//     checkPageButton.addEventListener('click', function()
-//     {
-//         chrome.tabs.getSelected(null, function(tab)
-//         {
-//             alert("Test");
-//             var enabledBool = document.getElementById("isEnabled");
-//             enabledBool = !enabledBool;
-//         });
-//     }, false);
-// }, false);
-
-
+    if(toggled)
+    {
+        toggleDropdown.value = toggled;
+    }
+})

@@ -4,44 +4,110 @@
         const numImages = 170;
         const flipExcludedCutoff = 168; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
-        var isEnabled = true;
-        var opacityPercentage = 100;
-
-
-        chrome.storage.local.get(["opacity"], (result) =>
-        {
-            console.log("Opacity received on main")
-            const { opacity } = result;
-
-            if(opacity)
-            {
-                opacityPercentage = opacity;
-            }
-        })
+        let isEnabled = true;
+        let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
+            if(isEnabled)
+            {
+                const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
 
-            const thumbnail = document.querySelectorAll(thumbnailQuery);
+                const thumbnail = document.querySelectorAll(thumbnailQuery);
 
-            thumbnail.forEach((image) =>
-                {
-                    let counter = Math.random() > 0.001 ? 1 : 20;
-                    let i = 0;
-                    for(i = 0; i < counter; i++)
+                thumbnail.forEach((image) =>
                     {
-                        const index = getRandomImage();
+                        let counter = Math.random() > 0.001 ? 1 : 20;
+                        let i = 0;
+                        for(i = 0; i < counter; i++)
+                        {
+                            const index = getRandomImage();
 
-                        let flip = getImageState(index);
+                            let flip = getImageState(index);
 
-                        let url = getImageURL(index);
-                        applyThumbnails(image, url, flip);
+                            let url = getImageURL(index);
+                            applyThumbnails(image, url, flip);
+                        }
+                    }
+                )
+            }
+        }
+
+        chrome.storage.local.get(["opacity", "toggled"], (result) =>
+        {
+            if(result.opacity)
+            {
+                opacityPercentage = result.opacity;
+            }
+            if(result.toggled !== undefined)
+            {
+
+                const { toggled } = result;
+
+                if(typeof toggled === "string")
+                {
+                    switch (toggled)
+                    {
+                        case 'On':
+                        {
+                            isEnabled = true;
+                            break;
+                        }
+                        case 'Off':
+                        {
+                            isEnabled = false;
+                            break;
+                        }
                     }
                 }
-            )
-        }
+                // else if(typeof toggled === "boolean")
+                // {
+                //     isEnabled = result.toggled;
+                // }
+            }
+            setInterval(getThumbnails, 100);
+        });
+
+        //Ensures that it updates whenever the user changes it
+        chrome.storage.onChanged.addListener((changes, areaName) =>
+        {
+            if(areaName === 'local')
+            {
+                if(changes.opacity)
+                {
+                    if(typeof changes.opacity === "number")
+                    {
+                        opacityPercentage = changes.opacity.newValue;
+                    }
+                }
+
+                if(changes.toggled !== undefined)
+                {
+                    if(typeof changes.toggled === "string")
+                    {
+                        switch(changes.toggled.newValue)
+                        {
+                            case 'On':
+                            {
+                                isEnabled = true;
+                                break;
+                            }
+                            case 'Off':
+                            {
+                                isEnabled = false;
+                                break;
+                            }
+                        }
+                    }
+                    // else if(typeof changes.toggled === "boolean")
+                    // {
+                    //     isEnabled = changes.toggled.newValue;
+                    // }
+                }
+                setInterval(getThumbnails, 100);
+            }
+        });
 
         //NOTE: The purpose of this function is to return the url of an image
         function getImageURL(index)
@@ -133,10 +199,10 @@
             })
         }
 
-        //runs the functions
-        if(isEnabled) //checks if the user has disabled the plugin or not
-        {
-            setInterval(getThumbnails, 100);
-        }
+        // //runs the functions
+        // if(isEnabled) //checks if the user has disabled the plugin or not
+        // {
+        //     setInterval(getThumbnails, 100);
+        // }
     }
 )();

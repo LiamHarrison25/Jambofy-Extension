@@ -1,22 +1,11 @@
-// let data =
-//     {
-//         "event": "onEnable/onDisable",
-//         "prefs":
-//             {
-//                 "opacity": '100'
-//             }
-//     }
 
-chrome.runtime.onMessage.addListener(data =>
+chrome.runtime.onMessage.addListener((data, sender, sendResponse) =>
 {
     const { prefs } = data
     switch (data.event)
     {
-        case 'onEnable':
-            handleOnEnable();
-            break;
-        case 'onDisable':
-            handleOnDisable();
+        case 'onToggle':
+            handleOnToggle(prefs);
             break;
         case 'onSwitchOpacity':
             handleOnSwitchOpacity(prefs);
@@ -24,20 +13,24 @@ chrome.runtime.onMessage.addListener(data =>
         default:
             break;
     }
-})
 
-const handleOnEnable = () =>
-{
-    console.log("Enabled")
-}
+    sendResponse({status: 'success'});
+});
 
-const handleOnDisable = () =>
+const handleOnToggle = (prefs) =>
 {
-    console.log("Disabled")
+    console.log("Toggle in background", prefs)
+    chrome.storage.local.set(prefs, () =>
+    {
+        console.log("Toggle saved in local storage");
+    });
 }
 
 const handleOnSwitchOpacity = (prefs) =>
 {
     console.log("prefs for opacity received: ", prefs)
-    chrome.storage.local.set(prefs)
+    chrome.storage.local.set(prefs, () =>
+    {
+        console.log("Opacity saved in local storage");
+    });
 }

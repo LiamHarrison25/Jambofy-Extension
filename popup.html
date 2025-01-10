@@ -10,29 +10,33 @@
     <body style="background-color:lightblue">
 
         <div class="container m-2">
-            <h1 style="color:darkorange; font-family: 'Niagara Engraved', sans-serif, inherit; "> Jambofy Extension &#128008 </h1>
+            <h1 style="color:orangered; font-family: 'Niagara Engraved', sans-serif, inherit; "> Jambofy Extension &#128008 </h1>
 
-            <!-- Buttons for toggling the cats-->
-            <div class="field">
-                <label class="label"> Toggle Cats &#8970 &#128572 &#8971</label>
-                <span class="tag is-outlined is-medium is-primary" id="enable"> Enabled</span>
-                <span class="tag is-outlined is-medium is-danger" id="disable">Disabled</span>
-
-            </div>
-        </div>
-
-        <!-- Dropdown for the cat opacity-->
-        <div class="container m-2">
-            <div class="field">
-                <label class="label"> Change cat opacity </label>
-                <div class="select">
-                    <select id="opacity" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(0, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(0, 0%, 96%)" >
-                        <option value="100" style="background-color: darkslateblue; " > 100%</option>
-                        <option value="75" style="background-color: slateblue"> 75%</option>
-                        <option value="50" style="background-color: mediumslateblue"> 50%</option>
-                        <option value="25" style="background-color: cornflowerblue"> 25%</option>
+            <!-- Dropdown for toggling the cats-->
+            <div class="container m-2">
+                <div class="field">
+                    <label class="label" style="color:darkslateblue; font-family: 'Garamond', sans-serif, inherit; "> Toggle the extension</label>
+                    <select id="toggle" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(25, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(25, 0%, 96%)" >
+                        <option value ="On" style="background-color: green; " > On</option>
+                        <option value ="Off" style="background-color: red; " > Off</option>
                     </select>
                 </div>
+            </div>
+
+            <!-- Dropdown for the cat opacity-->
+            <div class="container m-2">
+                <div class="field">
+                    <label class="label" style="color:darkslateblue; font-family: 'Garamond', sans-serif, inherit; "> Change cat opacity </label>
+                    <div class="select">
+                        <select id="opacity" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(0, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(0, 0%, 96%); --bulma-dropdown-item-selected-color-l: hsl(0, 0%, 96%)" >
+                            <option value="100" style="background-color: darkslateblue; " > 100%</option>
+                            <option value="75" style="background-color: slateblue"> 75%</option>
+                            <option value="50" style="background-color: mediumslateblue"> 50%</option>
+                            <option value="25" style="background-color: cornflowerblue"> 25%</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
 
         </div>
