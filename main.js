@@ -34,6 +34,24 @@
             }
         }
 
+        //NOTE: The purpose of this function is to get all Youtube titles on the page
+        function getTitles()
+        {
+            const titles = document.querySelectorAll("#video-title-link"); //works while watching the video: '#below #title h1'
+
+            titles.forEach( (title) =>
+            {
+                let counter = Math.random() > 0.001 ? 1 : 20;
+                let i = 0;
+                for(i = 0; i < counter; i++)
+                {
+                    applyTitles(title, "Jambo");
+
+                    //TODO: Check each title against a list of keywords. Replace those key words with other text.
+                }
+            })
+        }
+
         chrome.storage.local.get(["opacity", "toggled"], (result) =>
         {
             if(result.opacity)
@@ -67,6 +85,7 @@
                 // }
             }
             setInterval(getThumbnails, 100);
+            setInterval(getTitles, 100);
         });
 
         //Ensures that it updates whenever the user changes it
@@ -106,6 +125,7 @@
                     // }
                 }
                 setInterval(getThumbnails, 100);
+                setInterval(getTitles, 100);
             }
         });
 
@@ -141,6 +161,12 @@
             {
                 image.style.backgroundImage = `url("${imageUrl}"), ` + image.style.backgroundImage;
             }
+        }
+
+        //NOTE: The purpose of this function is to apply the text to a title on YouTube.com
+        function applyTitles(title, text)
+        {
+            title.innerText = text;
         }
 
         //NOTE: The purpose of this function is to take in a max number, and return a random number from 0 to that max number
