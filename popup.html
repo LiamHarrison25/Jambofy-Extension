@@ -5,6 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Jambofy Extension</title>
         <link rel="stylesheet" href="bulma.min.css" />
+        <style>
+            /*.select.is-rounded.is-warning select:focus*/
+            /*{*/
+            /*    border-color: darkorange;*/
+            /*    background-color: darkslateblue;*/
+            /*}*/
+
+            /*.select.is-rounded.is-warning select option:checked*/
+            /*{*/
+            /*    background-color: orange;*/
+            /*    color: white;*/
+            /*}*/
+
+            /*.select.is-rounded.is-warning select option:hover*/
+            /*{*/
+            /*    background-color: darkorange;*/
+            /*}*/
+
+            /*.select:after*/
+            /*{*/
+            /*    color: black;*/
+            /*}*/
+        </style>
     </head>
 
     <body style="background-color:lightblue">
@@ -16,10 +39,12 @@
             <div class="container m-2">
                 <div class="field">
                     <label class="label" style="color:darkslateblue; font-family: 'Garamond', sans-serif, inherit; "> Toggle the extension</label>
-                    <select id="toggle" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(25, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(25, 0%, 96%)" >
-                        <option value ="On" style="background-color: green; " > On</option>
-                        <option value ="Off" style="background-color: red; " > Off</option>
+                    <div class="select is-rounded is-warning">
+                    <select id="toggle" style="border-color: darkorange; background-color: lightslategrey; --bulma-: orange" >
+                        <option value ="On" style="background-color: green; color: white;" > On</option>
+                        <option value ="Off" style="background-color: red; color: white;" > Off</option>
                     </select>
+                    </div>
                 </div>
             </div>
 
@@ -27,7 +52,7 @@
             <div class="container m-2">
                 <div class="field">
                     <label class="label" style="color:darkslateblue; font-family: 'Garamond', sans-serif, inherit; "> Change cat opacity </label>
-                    <div class="select">
+                    <div class="select is-warning is">
                         <select id="opacity" style="border-color: darkorange; background-color: lightslategrey; --bulma-active-background-l-delta: hsl(0, 0%, 96%); --bulma-dropdown-divider-background-color: hsl(0, 0%, 96%); --bulma-dropdown-item-selected-color-l: hsl(0, 0%, 96%)" >
                             <option value="100" style="background-color: darkslateblue; " > 100%</option>
                             <option value="75" style="background-color: slateblue"> 75%</option>
@@ -36,7 +61,6 @@
                         </select>
                     </div>
                 </div>
-
             </div>
 
         </div>
