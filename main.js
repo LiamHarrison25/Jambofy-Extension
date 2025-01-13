@@ -1,8 +1,8 @@
 (() =>
     {
         const imageFilePath = "assets/images/";
-        const numImages = 170;
-        const flipExcludedCutoff = 168; //NOTE: this number represents the cutoff for where the non flippable images start
+        const numImages = 200;
+        const flipExcludedCutoff = 197; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
         const schlattNames = "assets/text/schlattNames.txt";
