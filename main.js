@@ -4,7 +4,15 @@
         const numImages = 170;
         const flipExcludedCutoff = 168; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
+
+        const schlattNames = "assets/text/schlattNames.txt";
+        const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt"];
+
+        let numSchlattNames = 0;
+        let schlattNameArray = ["Jcat"];
+
         let isEnabled = true;
+        let textEnabled = true;
         let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
@@ -37,7 +45,7 @@
         //NOTE: The purpose of this function is to get all Youtube titles on the page
         function getTitles()
         {
-            const titles = document.querySelectorAll("#video-title-link"); //works while watching the video: '#below #title h1'
+            const titles = document.querySelectorAll("#video-title-link, #video-title, #title"); //works while watching the video: '#below #title h1'
 
             titles.forEach( (title) =>
             {
@@ -45,9 +53,7 @@
                 let i = 0;
                 for(i = 0; i < counter; i++)
                 {
-                    applyTitles(title, "Jambo");
-
-                    //TODO: Check each title against a list of keywords. Replace those key words with other text.
+                    applyTitles(title, editTitle(title));
                 }
             })
         }
@@ -167,6 +173,58 @@
         function applyTitles(title, text)
         {
             title.innerText = text;
+        }
+
+        //NOTE: The purpose of this function is to check a title for key words and replace them
+        function editTitle(title)
+        {
+            let text = title.innerText;
+
+            //let foundName = false;
+            let i = 0;
+            for(i = 0; i < schlattNameSearchArray.length; i++)
+            {
+                if(text.includes(schlattNameSearchArray[i]))
+                {
+                    //foundName = true;
+
+                    //splits the string to separate out the name
+                    let splitString = text.split(schlattNameSearchArray[i]);
+
+                    text = "";
+
+                    //Reconnects the string around the replaced word
+                    let j = 0;
+                    for(j = 0; j < splitString.length; j++)
+                    {
+                        //Append the string back together with a random word from the schlatt names
+
+                        text = text.concat(splitString[j]);
+
+                        if(j !== splitString.length - 1)
+                        {
+                            text = text.concat(getRandomSchlattName());
+                        }
+                    }
+
+                }
+            }
+            return text;
+        }
+
+        function getRandomSchlattName()
+        {
+            let random = 0;
+            random = getRandomInt(numSchlattNames + 1);
+
+            if(random <= schlattNameArray.length)
+            {
+                return schlattNameArray[random]; //TODO: Fill this array with names from the .txt file
+            }
+            else
+            {
+                return "Jcat";
+            }
         }
 
         //NOTE: The purpose of this function is to take in a max number, and return a random number from 0 to that max number
