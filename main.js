@@ -6,7 +6,7 @@
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
         const schlattNames = "assets/text/schlattNames.txt";
-        const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt"];
+        const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt", "JSCHLATT", "SCHLATT"];
 
         let numSchlattNames = 0;
         //let schlattNameArray = ["Jcat"];
