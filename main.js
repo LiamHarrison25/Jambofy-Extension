@@ -9,7 +9,7 @@
         const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt"];
 
         let numSchlattNames = 0;
-        let schlattNameArray = ["Jcat"];
+        //let schlattNameArray = ["Jcat"];
 
         let isEnabled = true;
         let textEnabled = true;
@@ -212,14 +212,15 @@
             return text;
         }
 
+        //NOTE: The purpose of this function is to get a random schlatt name to replace in a video title
         function getRandomSchlattName()
         {
             let random = 0;
-            random = getRandomInt(numSchlattNames + 1);
+            random = getRandomInt(schlattList.length);
 
-            if(random <= schlattNameArray.length)
+            if(random <= schlattList.length)
             {
-                return schlattNameArray[random]; //TODO: Fill this array with names from the .txt file
+                return schlattList[random]; //TODO: Fill this array with names from the .txt file
             }
             else
             {
@@ -283,10 +284,82 @@
             })
         }
 
-        // //runs the functions
-        // if(isEnabled) //checks if the user has disabled the plugin or not
-        // {
-        //     setInterval(getThumbnails, 100);
-        // }
+        const schlattList =
+            [
+                "Bear Schlrills",
+                "Bigfoot",
+                "Big Gay Man",
+                "Big Guy",
+                "big hot man hot sweaty hot big man so hot big very large hot sweaty man",
+                "Button Man",
+                "Cigarette",
+                "DEFINITELY NOT GAY",
+                "Fragrance Man",
+                "Funny Mic",
+                "Furry",
+                "Gay",
+                "GaySchlatt",
+                "Gay Slut",
+                "Homosexual M Jason Schlatum",
+                "Hot Gay Man",
+                "Jaylor Schwift",
+                "Jebediah Schlatt",
+                "J Money",
+                "Jroll Face",
+                "Jschitt",
+                "Jschlit",
+                "Jschlitt",
+                "Jschlong",
+                "Jschlutt",
+                "Jschort",
+                "Jschort Simpson",
+                "Jshat",
+                "Jshit",
+                "JShlaticus",
+                "Jshmuck",
+                "Jsquirt",
+                "Jurg",
+                "Ladder Man",
+                "Logan from Big Time Rush",
+                "My favourite white boy",
+                "NutSchlack",
+                "Scat",
+                "Schittlestick",
+                "Schlab",
+                "Schlagg",
+                "Schlakers",
+                "Schlamega",
+                "Schlart",
+                "Schlattbama",
+                "Schlatticus",
+                "Schlattina",
+                "Schlattorious",
+                "Schlatt Schlattorius",
+                "Schlattsuni Miku",
+                "Schlerodichop",
+                "Schleroin Addict",
+                "Schlitt",
+                "Schlobama",
+                "Schlomp",
+                "Schloney",
+                "Schlong",
+                "Schlonic the Hedgehog",
+                "Schlorm",
+                "Schluddle",
+                "Schlugn",
+                "Schlunk",
+                "Schlurp",
+                "Schlurt",
+                "Schmellg",
+                "Schquidward",
+                "Schteal",
+                "Schumpel",
+                "Slat",
+                "Smag",
+                "The Parkour God",
+                "The PVP God",
+                "The Steel Toe",
+                "Ultraschound"
+            ]
     }
 )();
