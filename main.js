@@ -11,14 +11,14 @@
         let numSchlattNames = 0;
         //let schlattNameArray = ["Jcat"];
 
-        let isEnabled = true;
+        let isCatsEnabled = true;
         let textEnabled = true;
         let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            if(isEnabled)
+            if(isCatsEnabled)
             {
                 const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
 
@@ -58,29 +58,29 @@
             })
         }
 
-        chrome.storage.local.get(["opacity", "toggled"], (result) =>
+        chrome.storage.local.get(["opacity", "toggledCats"], (result) =>
         {
             if(result.opacity)
             {
                 opacityPercentage = result.opacity;
             }
-            if(result.toggled !== undefined)
+            if(result.toggledCats !== undefined)
             {
 
-                const { toggled } = result;
+                const { toggledCats } = result;
 
-                if(typeof toggled === "string")
+                if(typeof toggledCats === "string")
                 {
-                    switch (toggled)
+                    switch (toggledCats)
                     {
                         case 'On':
                         {
-                            isEnabled = true;
+                            isCatsEnabled = true;
                             break;
                         }
                         case 'Off':
                         {
-                            isEnabled = false;
+                            isCatsEnabled = false;
                             break;
                         }
                     }
@@ -107,20 +107,20 @@
                     }
                 }
 
-                if(changes.toggled !== undefined)
+                if(changes.toggledCats !== undefined)
                 {
-                    if(typeof changes.toggled === "string")
+                    if(typeof changes.toggledCats === "string")
                     {
-                        switch(changes.toggled.newValue)
+                        switch(changes.toggledCats.newValue)
                         {
                             case 'On':
                             {
-                                isEnabled = true;
+                                isCatsEnabled = true;
                                 break;
                             }
                             case 'Off':
                             {
-                                isEnabled = false;
+                                isCatsEnabled = false;
                                 break;
                             }
                         }

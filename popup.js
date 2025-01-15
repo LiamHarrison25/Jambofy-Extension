@@ -3,22 +3,22 @@
 // const enableButton = document.getElementById("enable");
 // const disableButton = document.getElementById("disable");
 const opacityDropdown = document.getElementById("opacity");
-const toggleDropdown = document.getElementById("toggle");
+const toggleCatsDropdown = document.getElementById("toggleCats");
 
 //enableButton.onclick = Enable;
 //disableButton.onclick = Disable;
 opacityDropdown.onclick = SwitchCatOpacity;
-toggleDropdown.onclick = ToggleCats;
+toggleCatsDropdown.onclick = ToggleCats;
 
 function ToggleCats()
 {
     const prefs =
         {
-            toggled : toggleDropdown.value
+            toggledCats : toggleCatsDropdown.value
         }
-    console.log(toggleDropdown.value);
-    chrome.runtime.sendMessage({event: 'onToggle', prefs})
-    console.log("Sending toggle event");
+    console.log(toggleCatsDropdown.value);
+    chrome.runtime.sendMessage({event: 'onToggleCats', prefs})
+    console.log("Sending toggleCats event");
 }
 
 function SwitchCatOpacity()
@@ -44,12 +44,12 @@ chrome.storage.local.get(["opacity"], (result) =>
 })
 
 //NOTE: Ensures that the toggle preferences will be saved
-chrome.storage.local.get(["toggled"], (result ) =>
+chrome.storage.local.get(["toggledCats"], (result ) =>
 {
-    const { toggled } = result;
+    const { toggledCats } = result;
 
-    if(toggled)
+    if(toggledCats)
     {
-        toggleDropdown.value = toggled;
+        toggleCatsDropdown.value = toggledCats;
     }
 })
