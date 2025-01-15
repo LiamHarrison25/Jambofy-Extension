@@ -1,14 +1,12 @@
 
 //Elements:
-// const enableButton = document.getElementById("enable");
-// const disableButton = document.getElementById("disable");
 const opacityDropdown = document.getElementById("opacity");
 const toggleCatsDropdown = document.getElementById("toggleCats");
+const toggleTextDropdown = document.getElementById("toggleText")
 
-//enableButton.onclick = Enable;
-//disableButton.onclick = Disable;
 opacityDropdown.onclick = SwitchCatOpacity;
 toggleCatsDropdown.onclick = ToggleCats;
+toggleTextDropdown.onclick = ToggleText;
 
 function ToggleCats()
 {
@@ -32,6 +30,17 @@ function SwitchCatOpacity()
     console.log("Sending switchOpacity event");
 }
 
+function ToggleText()
+{
+    const prefs =
+        {
+            toggledText : toggleTextDropdown.value
+        }
+        console.log(toggleTextDropdown.value);
+    chrome.runtime.sendMessage({event: 'onToggleText', prefs})
+    console.log("Sending toggleText event");
+}
+
 //NOTE: Ensures that the opacity preferences will be saved
 chrome.storage.local.get(["opacity"], (result) =>
 {
@@ -43,7 +52,7 @@ chrome.storage.local.get(["opacity"], (result) =>
     }
 })
 
-//NOTE: Ensures that the toggle preferences will be saved
+//NOTE: Ensures that the toggle cats preferences will be saved
 chrome.storage.local.get(["toggledCats"], (result ) =>
 {
     const { toggledCats } = result;
@@ -51,5 +60,16 @@ chrome.storage.local.get(["toggledCats"], (result ) =>
     if(toggledCats)
     {
         toggleCatsDropdown.value = toggledCats;
+    }
+})
+
+//NOTE: Ensures the the toggle text preferences will be saved
+chrome.storage.local.get(["toggledText"], (result) =>
+{
+    const { toggledText } = result;
+
+    if(toggledText)
+    {
+        toggleTextDropdown.value = toggledText;
     }
 })

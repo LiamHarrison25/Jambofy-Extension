@@ -11,8 +11,9 @@
         let numSchlattNames = 0;
         //let schlattNameArray = ["Jcat"];
 
+        //Variables exposed to the popup:
         let isCatsEnabled = true;
-        let textEnabled = true;
+        let isTextEnabled = true;
         let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
@@ -45,20 +46,23 @@
         //NOTE: The purpose of this function is to get all Youtube titles on the page
         function getTitles()
         {
-            const titles = document.querySelectorAll("#video-title-link, #video-title, #title"); //works while watching the video: '#below #title h1'
-
-            titles.forEach( (title) =>
+            if(isTextEnabled)
             {
-                let counter = Math.random() > 0.001 ? 1 : 20;
-                let i = 0;
-                for(i = 0; i < counter; i++)
+                const titles = document.querySelectorAll("#video-title-link, #video-title, #title"); //works while watching the video: '#below #title h1'
+
+                titles.forEach( (title) =>
                 {
-                    applyTitles(title, editTitle(title));
-                }
-            })
+                    let counter = Math.random() > 0.001 ? 1 : 20;
+                    let i = 0;
+                    for(i = 0; i < counter; i++)
+                    {
+                        applyTitles(title, editTitle(title));
+                    }
+                })
+            }
         }
 
-        chrome.storage.local.get(["opacity", "toggledCats"], (result) =>
+        chrome.storage.local.get(["opacity", "toggledCats", "toggledText"], (result) =>
         {
             if(result.opacity)
             {
@@ -85,11 +89,29 @@
                         }
                     }
                 }
-                // else if(typeof toggled === "boolean")
-                // {
-                //     isEnabled = result.toggled;
-                // }
             }
+            if(result.toggledText)
+            {
+                const { toggledText } = result;
+
+                if(typeof toggledText === "string")
+                {
+                    switch (toggledText)
+                    {
+                        case 'On':
+                        {
+                            isTextEnabled = true;
+                            break;
+                        }
+                        case 'Off':
+                        {
+                            isTextEnabled = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
             setInterval(getThumbnails, 100);
             setInterval(getTitles, 100);
         });
@@ -125,10 +147,25 @@
                             }
                         }
                     }
-                    // else if(typeof changes.toggled === "boolean")
-                    // {
-                    //     isEnabled = changes.toggled.newValue;
-                    // }
+                }
+                if(changes.toggledText !== undefined)
+                {
+                    if(typeof changes.toggledText === "string")
+                    {
+                        switch(changes.toggledText.newValue)
+                        {
+                            case 'On':
+                            {
+                                isTextEnabled = true;
+                                break;
+                            }
+                            case 'Off':
+                            {
+                                isTextEnabled = false;
+                                break;
+                            }
+                        }
+                    }
                 }
                 setInterval(getThumbnails, 100);
                 setInterval(getTitles, 100);
