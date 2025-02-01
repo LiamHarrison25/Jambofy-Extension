@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Jambofy",
   "version": "2.0.0",
-  "description": "Improves boring youtube thumbnails by adding Jambo the cat.",
+  "description": "Improves boring YouTube thumbnails by adding Jambo and other cats.",
   "host_permissions": [ "https://www.youtube.com/*"],
   "content_scripts":
   [

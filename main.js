@@ -240,7 +240,10 @@
 
                         if(j !== splitString.length - 1)
                         {
-                            text = text.concat(getRandomSchlattName());
+                            let replacedName = getRandomSchlattName();
+                            let quotes = '"';
+                            replacedName = quotes + replacedName + quotes;
+                            text = text.concat((replacedName));
                         }
                     }
 
