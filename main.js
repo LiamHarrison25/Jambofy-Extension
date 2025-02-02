@@ -1,8 +1,8 @@
 (() =>
     {
         const imageFilePath = "assets/images/";
-        const numImages = 200;
-        const flipExcludedCutoff = 197; //NOTE: this number represents the cutoff for where the non flippable images start
+        const numImages = 209;
+        const flipExcludedCutoff = 204; //NOTE: this number represents the cutoff for where the non flippable images start
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
         const schlattNames = "assets/text/schlattNames.txt";
@@ -216,6 +216,10 @@
         function editTitle(title)
         {
             let text = title.innerText;
+            text.font = title.innerText.font;
+            text.fontSize = title.innerText.fontSize;
+            text.fontFamily = title.innerText.fontFamily;
+
 
             //let foundName = false;
             let i = 0;
@@ -331,10 +335,10 @@
                 "Big Gay Man",
                 "Big Guy",
                 "big hot man hot sweaty hot big man so hot big very large hot sweaty man",
+                "Buddy Holly",
                 "Button Man",
                 "Cigarette",
                 "DEFINITELY NOT GAY",
-                "Fragrance Man",
                 "Funny Mic",
                 "Furry",
                 "Gay",
@@ -342,9 +346,11 @@
                 "Gay Slut",
                 "Homosexual M Jason Schlatum",
                 "Hot Gay Man",
+                "Jared",
                 "Jaylor Schwift",
                 "Jebediah Schlatt",
                 "J Money",
+                "Joe Biden",
                 "Jroll Face",
                 "Jschitt",
                 "Jschlit",
@@ -361,45 +367,85 @@
                 "Jurg",
                 "Ladder Man",
                 "Logan from Big Time Rush",
-                "My favourite white boy",
+                "Ludwig",
+                "Mr. Schlog",
+                "My favorite white boy",
                 "NutSchlack",
+                "Perry the schlattypus",
+                "REPENT OR BURN IN HELL!",
                 "Scat",
                 "Schittlestick",
                 "Schlab",
+                "Schlabberghasted",
                 "Schlagg",
                 "Schlakers",
+                "Schlambled Eggs",
+                "Schlambles",
+                "Schlambo",
+                "Schlamboozled",
                 "Schlamega",
+                "Schlamera schlens",
+                "Schland",
                 "Schlart",
                 "Schlattbama",
                 "Schlatticus",
                 "Schlattina",
+                "Schlattistics",
                 "Schlattorious",
+                "Schlattpat",
                 "Schlatt Schlattorius",
                 "Schlattsuni Miku",
+                "Schlaumatized",
                 "Schlerodichop",
                 "Schleroin Addict",
+                "Schlesticle",
+                "Schleumonoultramicroscopicsilicovolcanoconiosis",
+                "Schleven Schleleven",
+                "Schliggles",
+                "Schlim Jim",
                 "Schlitt",
                 "Schlobama",
+                "Schlock 17",
+                "Schlois",
                 "Schlomp",
                 "Schloney",
                 "Schlong",
                 "Schlonic the Hedgehog",
+                "schloofenschmirtz schlevil schilcorporated",
+                "Schlooksmaxxing",
+                "Schlop",
+                "Schloppenheimer",
                 "Schlorm",
+                "Schluatese",
                 "Schluddle",
                 "Schlugn",
+                "Schlumbfounded",
+                "Schlungus",
                 "Schlunk",
+                "Schlunk Schliving",
+                "Schlunt",
                 "Schlurp",
                 "Schlurt",
+                "Schlutt the fuck up",
                 "Schmellg",
+                "Scholarship",
                 "Schquidward",
+                "Schrinkles",
                 "Schteal",
+                "Schtonks",
                 "Schumpel",
+                "Shlantidisestablishmentarianism",
                 "Slat",
                 "Smag",
+                "Squirt",
+                "The AI",
                 "The Parkour God",
                 "The PVP God",
                 "The Steel Toe",
-                "Ultraschound"
+                "They thought I was gay",
+                "Tomska",
+                "Ultraschound",
+                "Weezer"
             ]
     }
 )();
