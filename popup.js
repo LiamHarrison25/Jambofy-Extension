@@ -4,9 +4,9 @@ const opacityDropdown = document.getElementById("opacity");
 const toggleCatsDropdown = document.getElementById("toggleCats");
 const toggleTextDropdown = document.getElementById("toggleText")
 
-opacityDropdown.onclick = SwitchCatOpacity;
-toggleCatsDropdown.onclick = ToggleCats;
-toggleTextDropdown.onclick = ToggleText;
+opacityDropdown.onchange = SwitchCatOpacity;
+toggleCatsDropdown.onchange = ToggleCats;
+toggleTextDropdown.onchange = ToggleText;
 
 function ToggleCats()
 {
