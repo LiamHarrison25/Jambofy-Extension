@@ -6,7 +6,7 @@
         const flipRandomPercent = 2; //NOTE: the number represents how many numbers to randomly choose. bigger = less likely, smaller = more likely.
 
         const schlattNames = "assets/text/schlattNames.txt";
-        const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt", "JSCHLATT", "SCHLATT"];
+        const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt", "JSCHLATT", "SCHLATT", "JSchlatt"];
 
         let numSchlattNames = 0;
         //let schlattNameArray = ["Jcat"];
@@ -215,13 +215,7 @@
         //NOTE: The purpose of this function is to check a title for key words and replace them
         function editTitle(title)
         {
-            let text = title.innerText;
-            text.font = title.innerText.font;
-            text.fontSize = title.innerText.fontSize;
-            text.fontFamily = title.innerText.fontFamily;
-
-
-            //let foundName = false;
+            let text = title.innerText; //{ ...title.innerText }; //Creates a copy of the text
             let i = 0;
             for(i = 0; i < schlattNameSearchArray.length; i++)
             {
@@ -253,6 +247,8 @@
 
                 }
             }
+
+            text.fontSize = title.fontSize;
             return text;
         }
 
