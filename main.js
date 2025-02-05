@@ -13,7 +13,7 @@
 
         //Variables exposed to the popup:
         let isCatsEnabled = true;
-        let isTextEnabled = true;
+        let isTextEnabled = false;
         let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
