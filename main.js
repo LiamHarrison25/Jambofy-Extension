@@ -1,5 +1,8 @@
 (() =>
     {
+        // Cross-browser compatibility
+        const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+        
         const imageFilePath = "assets/images/";
         const numImages = 209;
         const flipExcludedCutoff = 204; //NOTE: this number represents the cutoff for where the non flippable images start
@@ -62,7 +65,7 @@
             }
         }
 
-        chrome.storage.local.get(["opacity", "toggledCats", "toggledText"], (result) =>
+        browserAPI.storage.local.get(["opacity", "toggledCats", "toggledText"], (result) =>
         {
             if(result.opacity)
             {
@@ -117,7 +120,7 @@
         });
 
         //Ensures that it updates whenever the user changes it
-        chrome.storage.onChanged.addListener((changes, areaName) =>
+        browserAPI.storage.onChanged.addListener((changes, areaName) =>
         {
             if(areaName === 'local')
             {
@@ -175,7 +178,7 @@
         //NOTE: The purpose of this function is to return the url of an image
         function getImageURL(index)
         {
-            return chrome.runtime.getURL(`${imageFilePath}${index}.png`);
+            return browserAPI.runtime.getURL(`${imageFilePath}${index}.png`);
         }
 
         //NOTE: The purpose of this function is to apply the thumbnail images to the thumbnails on YouTube.com

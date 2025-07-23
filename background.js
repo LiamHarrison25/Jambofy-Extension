@@ -1,5 +1,11 @@
 
-chrome.runtime.onMessage.addListener((data, sender, sendResponse) =>
+// Cross-browser compatibility
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
+// Handle both service worker and background script contexts
+const isServiceWorker = typeof importScripts === 'function';
+
+browserAPI.runtime.onMessage.addListener((data, sender, sendResponse) =>
 {
     const { prefs } = data
     switch (data.event)
@@ -18,12 +24,15 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) =>
     }
 
     sendResponse({status: 'success'});
+    
+    // Indicate async response
+    return true;
 });
 
 const handleOnToggleCats = (prefs) =>
 {
     console.log("Toggle cats in background", prefs)
-    chrome.storage.local.set(prefs, () =>
+    browserAPI.storage.local.set(prefs, () =>
     {
         console.log("Toggle cats saved in local storage");
     });
@@ -32,7 +41,7 @@ const handleOnToggleCats = (prefs) =>
 const handleOnSwitchOpacity = (prefs) =>
 {
     console.log("prefs for opacity received: ", prefs)
-    chrome.storage.local.set(prefs, () =>
+    browserAPI.storage.local.set(prefs, () =>
     {
         console.log("Opacity saved in local storage");
     });
@@ -41,7 +50,7 @@ const handleOnSwitchOpacity = (prefs) =>
 const handleOnToggleText = (prefs) =>
 {
     console.log("Toggle text in background", prefs)
-    chrome.storage.local.set(prefs, () =>
+    browserAPI.storage.local.set(prefs, () =>
     {
         console.log("Toggle text saved in local storage");
     });

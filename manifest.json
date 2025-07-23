@@ -3,7 +3,13 @@
   "name": "Jambofy",
   "version": "2.0.0",
   "description": "Improves boring YouTube thumbnails by adding Jambo and other cats.",
-  "host_permissions": [ "https://www.youtube.com/*"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "jambofy@liamharrison.dev",
+      "strict_min_version": "109.0"
+    }
+  },
+  "host_permissions": ["https://www.youtube.com/*"],
   "content_scripts":
   [
     {
@@ -42,8 +48,8 @@
   },
   "background":
   {
-    "service_worker": "background.js",
-    "type": "module"
+    "scripts": ["background.js"],
+    "service_worker": "background.js"
   },
   "permissions":
   [
