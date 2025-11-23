@@ -9,7 +9,6 @@
         const schlattNameSearchArray = ["Jschlatt", "jschlatt", "schlatt", "Schlatt", "JSCHLATT", "SCHLATT", "JSchlatt"];
 
         let numSchlattNames = 0;
-        //let schlattNameArray = ["Jcat"];
 
         //Variables exposed to the popup:
         let isCatsEnabled = true;
@@ -19,28 +18,45 @@
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            if(isCatsEnabled)
+            if(!isCatsEnabled)
             {
-                const thumbnailQuery = "ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])";
-
-                const thumbnail = document.querySelectorAll(thumbnailQuery);
-
-                thumbnail.forEach((image) =>
-                    {
-                        let counter = Math.random() > 0.001 ? 1 : 20;
-                        let i = 0;
-                        for(i = 0; i < counter; i++)
-                        {
-                            const index = getRandomImage();
-
-                            let flip = getImageState(index);
-
-                            let url = getImageURL(index);
-                            applyThumbnails(image, url, flip);
-                        }
-                    }
-                )
+                return;
             }
+
+            const thumbnailQuery =
+                [
+                    "ytd-thumbnail img", //  selector
+                    "img.yt-core-image", // fallback
+                    ".yt-thumbnail-view-model__image img",
+                    "img.ytCoreImageHost"
+                ];
+
+            const thumbnails = [];
+
+            for (const selector of thumbnailQuery)
+                {
+                    thumbnails.push(...Array.from(document.querySelectorAll(selector)));
+                }
+
+            thumbnails.forEach((image) =>
+                {
+                    if(image.dataset.overlayApplied) // should get rid of the multiple image bug
+                    {
+                        return;
+                    }
+
+                    image.dataset.overlayApplied = "true";
+
+                    const index = getRandomImage();
+
+                    let flip = getImageState(index);
+
+                    let url = getImageURL(index);
+
+                    applyThumbnails(image, url, flip);
+                }
+            )
+
         }
 
         //NOTE: The purpose of this function is to get all Youtube titles on the page
@@ -182,7 +198,15 @@
         function applyThumbnails(image, imageUrl, flip = false)
         {
             if (image.nodeName == "IMG")
-            {``
+            {
+
+                const parent = image.closest("ytd-thumbnail, a, div"); // ensures that the images don't flicker
+                if(!parent) return;
+
+                if(parent.dataset.overlayApplied) return;
+                parent.dataset.overlayApplied = "true";
+
+
                 const overlay = document.createElement("img");
                 overlay.src = imageUrl;
                 overlay.style.position = "absolute";
@@ -190,7 +214,7 @@
                 overlay.style.left = "0";
                 overlay.style.width = "100%";
                 overlay.style.height = "100%";
-                overlay.style.zIndex = "0";
+                overlay.style.zIndex = "10";
                 overlay.style.opacity = opacityPercentage / 100.0;
 
                 if(flip)
@@ -199,6 +223,7 @@
                 }
                 image.style.position = "relative";
                 image.parentElement.appendChild(overlay);
+                //parent.appendChild(overlay);
             }
             else if (image.nodeName == "DIV")
             {
