@@ -26,10 +26,11 @@
             const thumbnailQuery =
                 [
                     "ytd-thumbnail img", //  selector
-                    "img.yt-core-image", // fallback
-                    ".yt-thumbnail-view-model__image img",
-                    "img.ytCoreImageHost"
+                    ".ytThumbnailViewModelImage img", // yt thumbnail
+                   // "img.yt-core-image", 
+                   // ".yt-thumbnail-view-model__image img"
                 ];
+
 
             const thumbnails = [];
 
