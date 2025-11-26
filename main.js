@@ -27,7 +27,7 @@
                 [
                     "ytd-thumbnail img", //  selector
                     ".ytThumbnailViewModelImage img", // yt thumbnail
-                   // "img.yt-core-image", 
+                   // "img.yt-core-image",
                    // ".yt-thumbnail-view-model__image img"
                 ];
 
