@@ -1,4 +1,7 @@
 
+// Cross-browser compatibility
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
+
 //Elements:
 const opacityDropdown = document.getElementById("opacity");
 const toggleCatsDropdown = document.getElementById("toggleCats");
@@ -15,7 +18,7 @@ function ToggleCats()
             toggledCats : toggleCatsDropdown.value
         }
     console.log(toggleCatsDropdown.value);
-    chrome.runtime.sendMessage({event: 'onToggleCats', prefs})
+    browserAPI.runtime.sendMessage({event: 'onToggleCats', prefs})
     console.log("Sending toggleCats event");
 }
 
@@ -26,7 +29,7 @@ function SwitchCatOpacity()
             opacity: opacityDropdown.value
         }
     console.log(opacityDropdown.value);
-    chrome.runtime.sendMessage({event: 'onSwitchOpacity', prefs})
+    browserAPI.runtime.sendMessage({event: 'onSwitchOpacity', prefs})
     console.log("Sending switchOpacity event");
 }
 
@@ -37,12 +40,12 @@ function ToggleText()
             toggledText : toggleTextDropdown.value
         }
         console.log(toggleTextDropdown.value);
-    chrome.runtime.sendMessage({event: 'onToggleText', prefs})
+    browserAPI.runtime.sendMessage({event: 'onToggleText', prefs})
     console.log("Sending toggleText event");
 }
 
 //NOTE: Ensures that the opacity preferences will be saved
-chrome.storage.local.get(["opacity"], (result) =>
+browserAPI.storage.local.get(["opacity"], (result) =>
 {
     const { opacity } = result;
 
@@ -53,7 +56,7 @@ chrome.storage.local.get(["opacity"], (result) =>
 })
 
 //NOTE: Ensures that the toggle cats preferences will be saved
-chrome.storage.local.get(["toggledCats"], (result ) =>
+browserAPI.storage.local.get(["toggledCats"], (result ) =>
 {
     const { toggledCats } = result;
 
@@ -64,7 +67,7 @@ chrome.storage.local.get(["toggledCats"], (result ) =>
 })
 
 //NOTE: Ensures the the toggle text preferences will be saved
-chrome.storage.local.get(["toggledText"], (result) =>
+browserAPI.storage.local.get(["toggledText"], (result) =>
 {
     const { toggledText } = result;
 
