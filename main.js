@@ -11,14 +11,14 @@
         let numSchlattNames = 0;
 
         //Variables exposed to the popup:
-        let isCatsEnabled = true;
+        let isDaniBillyEnabled = true;
         let isTextEnabled = false;
         let opacityPercentage = 100;
 
         //NOTE: The purpose of this function is to get all YouTube thumbnails on the page
         function getThumbnails()
         {
-            if(!isCatsEnabled)
+            if(!isDaniBillyEnabled)
             {
                 return;
             }
@@ -96,12 +96,12 @@
                     {
                         case 'On':
                         {
-                            isCatsEnabled = true;
+                            isDaniBillyEnabled = true;
                             break;
                         }
                         case 'Off':
                         {
-                            isCatsEnabled = false;
+                            isDaniBillyEnabled = false;
                             break;
                         }
                     }
@@ -154,12 +154,12 @@
                         {
                             case 'On':
                             {
-                                isCatsEnabled = true;
+                                isDaniBillyEnabled = true;
                                 break;
                             }
                             case 'Off':
                             {
-                                isCatsEnabled = false;
+                                isDaniBillyEnabled = false;
                                 break;
                             }
                         }

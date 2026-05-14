@@ -4,8 +4,8 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) =>
     const { prefs } = data
     switch (data.event)
     {
-        case 'onToggleCats':
-            handleOnToggleCats(prefs);
+        case 'onToggleDaniandBilly':
+            handleonToggleDaniandBilly(prefs);
             break;
         case 'onSwitchOpacity':
             handleOnSwitchOpacity(prefs);
@@ -20,12 +20,12 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) =>
     sendResponse({status: 'success'});
 });
 
-const handleOnToggleCats = (prefs) =>
+const handleonToggleDaniandBilly = (prefs) =>
 {
-    console.log("Toggle cats in background", prefs)
+    console.log("Toggle Billy (From Karlson) in background", prefs)
     chrome.storage.local.set(prefs, () =>
     {
-        console.log("Toggle cats saved in local storage");
+        console.log("Toggle Billy (From Karlson) saved in local storage");
     });
 }
 
